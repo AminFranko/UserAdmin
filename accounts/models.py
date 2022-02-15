@@ -26,13 +26,14 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    username = models.CharField(max_length=255)
+    username = models.CharField(max_length=255,unique=True)
     email = models.EmailField(unique=True)
     phone = models.IntegerField()
     # FirstName = models.CharField(max_length=255)
     # LastName = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','phone']
     objects = UserManager()
