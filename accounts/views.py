@@ -17,12 +17,20 @@ def login_view(request):
                 email = form.cleaned_data.get('email')
                 username = form.cleaned_data.get('username')
                 password = form.cleaned_data.get('password')
+                print(email, username, password)
                 # user = authenticate(request,email=email,password=password)
-                user = authenticate(email=email,password=password)
-                print(user.username)
-                if user is not None:
-                    login(request,user)
-                    return redirect('/')        
+                user1 = authenticate(email=email,password=password)
+                print('user1: ', user1)
+                user2 = authenticate(username=username,password=password)
+                print('user2: ', user2)
+                # print(user.username)
+                if user1 is not None:
+                    login(request,user1)
+                    return redirect('/')
+                else:
+                    login(request,user2)
+                    return redirect('/')
+                    
     
         form = AuthenticationForm()        
         context ={'form':form}

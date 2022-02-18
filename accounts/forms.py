@@ -37,7 +37,8 @@ class UserChangeForm(forms.ModelForm):
 
 class AuthenticationForm(forms.Form): # Note: forms.Form NOT forms.ModelForm
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control','type':'text','name':'email','placeholder':'Email'}), label='Email')
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control','type':'text','name':'username','placeholder':'Username'}), label='Username')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','type':'password', 'name': 'password','placeholder':'Password'}),label='Password')
 
     class Meta:
-        fields = ['email', 'password']
+        fields = ['email', 'username', 'password']
